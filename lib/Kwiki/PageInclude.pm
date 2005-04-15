@@ -1,18 +1,16 @@
 package Kwiki::PageInclude;
-use strict;
-use warnings;
-use Kwiki::Plugin '-Base';
-our $VERSION = '0.01';
+use Kwiki::Plugin -Base;
+our $VERSION = '0.02';
 
 const class_id => 'page_include';
 const class_title => 'Include Other Page';
 
 sub register {
     my $reg = shift;
-    $reg->add(wafl => include => 'My::WaflPhrase');
+    $reg->add(wafl => include => 'Kwiki::PageInclude::WaflPhrase');
 }
 
-package My::WaflPhrase;
+package Kwiki::PageInclude::WaflPhrase; 
 use base 'Spoon::Formatter::WaflPhrase';
 
 sub to_html {
@@ -24,9 +22,6 @@ sub to_html {
     }
     return $ret;
 }
-
-package Kwiki::PageInclude;
-1;
 
 __END__
 
